@@ -13,6 +13,9 @@ body {
   }
 }
 
+.second{
+	display: none;
+}
 
 .parentElement{
 	text-align: center;	
@@ -727,5 +730,21 @@ footer p {
 	}
 	.accordion-single .card-header h5 a{
 		font-size: 14px;
+	}
+	.success {
+	
+		margin-bottom: 120px;
+		width: 21rem;
+		height: 5rem;
+		padding: 0;
+		text-align: center;
+		display: inline-block;
+    
+    }
+	.second{
+		display: block;
+	}
+	.first{
+		display: none;
 	}
 }
