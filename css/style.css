@@ -733,8 +733,7 @@ footer p {
 		font-size: 14px;
 	}
 	.success {
-	
-		margin-bottom: 120px;
+		margin: 0 50px 250px -37px;
 		width: 21rem;
 		height: 5rem;
 		padding: 0;
