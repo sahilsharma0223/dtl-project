@@ -37,75 +37,24 @@ def services(request):
     return render(request, 'services.html')
 
 def output(request):
-    df = pd.read_csv("E:/dtl-project/Dataset/Fertilizer_Prediction.csv")
-    y = df['Fertilizer Name'].copy()
-    X = df.drop('Fertilizer Name', axis=1).copy()
-
-    ct = ColumnTransformer(
-        transformers=[('encoder', OneHotEncoder(), [3, 4])], remainder='passthrough')
-    X = np.array(ct.fit_transform(X))
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, train_size=0.7, shuffle=True, random_state=42)
-
-    sc = StandardScaler()
-    X_train = sc.fit_transform(X_train)
-    X_test = sc.transform(X_test)
-
-    classifier = RandomForestClassifier(
-        n_estimators=100, criterion='gini', random_state=42)
-    classifier.fit(X_train, y_train)
-
-    y_pred = classifier.predict(X_test)
-    cm = confusion_matrix(y_test, y_pred)
-
-    encode_soil = LabelEncoder()
-    df['Soil Type'] = encode_soil.fit_transform(df['Soil Type'])
-
-    # creating the DataFrame
-    Soil_Type = pd.DataFrame(zip(encode_soil.classes_, encode_soil.transform(encode_soil.classes_)),
-                            columns=['Original', 'Encoded'])
-    Soil_Type = Soil_Type.set_index('Original')
-
-    encode_crop = LabelEncoder()
-    df['Crop Type'] = encode_crop.fit_transform(df['Crop Type'])
-
-    # creating the DataFrame
-    Crop_Type = pd.DataFrame(zip(encode_crop.classes_, encode_crop.transform(encode_crop.classes_)),
-                            columns=['Original', 'Encoded'])
-    Crop_Type = Crop_Type.set_index('Original')
-
-    encode_ferti = LabelEncoder()
-    df['Fertilizer Name'] = encode_ferti.fit_transform(df['Fertilizer Name'])
-
-    # creating the DataFrame
-    Fertilizer = pd.DataFrame(zip(encode_ferti.classes_, encode_ferti.transform(encode_ferti.classes_)),
-                            columns=['Original', 'Encoded'])
-    Fertilizer = Fertilizer.set_index('Original')
-
-    x_train, x_test, y_train, y_test = train_test_split(df.drop('Fertilizer Name', axis=1), df['Fertilizer Name'],
-                                                        test_size=0.2, random_state=1)
-
-    rand = RandomForestClassifier(random_state=42)
-    rand.fit(x_train, y_train)
-
-    pred_rand = rand.predict(x_test)
-
-    params = {
-        'n_estimators': [300, 400, 500],
-        'max_depth': [5, 10, 15],
-        'min_samples_split': [2, 5, 8]
-    }
-    grid_rand = GridSearchCV(rand, params, cv=3, verbose=3, n_jobs=-1)
-    grid_rand.fit(x_train, y_train)
-    pred_rand = grid_rand.predict(x_test)
-
-    pickle_out = open('classifier.pkl', 'wb')
-    pickle.dump(grid_rand, pickle_out)
-    pickle_out.close()
-
+    inp1=request.POST.get('p1')
+    inp2=request.POST.get('p2')
+    inp3=request.POST.get('p3')
+    inp4=request.POST.get('p4')
+    inp5=request.POST.get('p5')
+    inp6=request.POST.get('p6')
+    inp7=request.POST.get('p7')
+    inp8 = request.POST.get('p8')
+    inp1=int(inp1)
+    inp2 = int(inp2)
+    inp3=int(inp3)
+    inp4=int(inp4)
+    inp5=int(inp5)
+    inp6=int(inp6)
+    inp7=int(inp7)
+    inp8=int(inp8)
     model = pickle.load(open('classifier.pkl', 'rb'))
-    ans = model.predict([[34, 65, 62, 0, 1, 7, 9, 30]])
+    ans = model.predict([[inp1, inp2, inp3,inp4 , inp5, inp6, inp7, inp8]])
     if ans[0] == 0:
         data="10-26-26"
     elif ans[0] == 1:

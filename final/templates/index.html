@@ -20,9 +20,10 @@
 
 <body>
 	<!-- Navigation -->
+	
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="{% url 'home' %}">
 				<img src="{% static 'images/logo.jpg' %}" class="logo" alt="logo" />
 			</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -81,7 +82,7 @@
 				<div class="carousel-item" style="background-image: url('static/images/slider-03.jpg')">
 					<div class="carousel-caption d-md-block">
 						<div class="parentElement">
-							<a href="recommend.html" class="btn success mainbutton">
+							<a href="{% url 'recommend' %}" class="btn success mainbutton">
 								<h2 class="mainbuttontext first">Click Here for Fertilizer Recommendation</h2>
 								<h2 class="mainbuttontext second">Fertilizer Recommend</h2>
 							</a>
@@ -94,7 +95,7 @@
 				<div class="carousel-item" style="background-image: url('static/images/slider-02.jpg')">
 					<div class="carousel-caption d-md-block">
 						<div class="parentElement">
-							<a href="recommend.html" class="btn success mainbutton">
+							<a href="{% url 'recommend' %}" class="btn success mainbutton">
 								<h2 class="mainbuttontext first">Click Here for Fertilizer Recommendation</h2>
 								<h2 class="mainbuttontext second">Fertilizer Recommend</h2>
 							</a>
@@ -145,6 +146,11 @@
 						<li>
 							<a href="#"><i class="fab fa-linkedin fleft padding-right"></i> </a>
 							<p><a href="https://www.linkedin.com/in/ktnvaish/">Linkedin : Ketan Vaish</a></p>
+						</li>
+						<li>
+							<a href="#"><i class="fab fa-linkedin fleft padding-right"></i> </a>
+							<p><a href="#">Linkedin : Harshit Handa</a>
+							</p>
 						</li>
 					</ul>
 					<!--footer_ul2_amrc ends here-->
@@ -220,7 +226,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-	<script src="index.js"></script>
+	<script src="{% static 'index.js' %}""></script>
 </body>
 
 </html>

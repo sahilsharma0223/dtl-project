@@ -22,7 +22,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'images/logo.jpg' %}" class="logo" alt="logo" />
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -76,9 +76,103 @@
             </ol>
         </div>
         {% if not data %}
-            <button onclick="location.href='{% url 'script' %}'">test</button>
-            <br>
-            <br>
+            <div class="container">
+                <h1>Please fill the details below</h1>
+            
+                <form id="form" action="/output" method="post">
+                    {% csrf_token %}
+                    <!-- Details -->
+                    <div class="form-control">
+                        <label for="name" id="label-name">
+                            Temperature: 
+                        </label>
+            
+                        <input type="text" name="p1" id="name" placeholder="Enter the Temperature" />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="email" id="label-email" >
+                            Humidity: 
+                        </label>
+            
+                        <input type="text" name="p2" id="name" placeholder="Enter the humidity" />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="age" id="label-age">
+                            Moisture: 
+                        </label>
+            
+                        <!-- Input Type Text -->
+                        <input type="text"  name="p3" id="age" placeholder="Enter moisture content of the soil" />
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="role" id="label-role" >
+                            Soil type: 
+                        </label>
+            
+                        <select name="p4" id="role">
+                            <option value=0>Black</option>
+                            <option value=1>Clayey</option>
+                            <option value=2>
+                                Loamy
+                            </option>
+                            <option value=3>Red</option>
+                            <option value=4>Sandy</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-control">
+                        <label name='p5'>
+                            Crop Type: 
+                        </label>
+            
+                        <select name="p5" id="role">
+                            <option value=0>Barley</option>
+                            <option value=1>Cotton</option>
+                            <option value=2>
+                                Ground Nuts
+                            </option>
+                            <option value=3>Maize</option>
+                            <option value=4>Millet</option>
+                            <option value=5>Oil Seeds</option>
+                            <option value=6>Paddy</option>
+                            <option value=7>Pulses</option>
+                            <option value=8>Sugercane</option>
+                            <option value=9>Tobacco</option>
+                            <option value=10>Wheat</option>
+            
+                        </select>
+                    </div>
+            
+                    <div class="form-control">
+                        <label for="age" id="label-age" >
+                            Nitrogen Content: 
+                        </label>
+            
+                        <!-- Input Type Text -->
+                        <input type="text" name='p6' id="age" placeholder="Enter Nitrogen content" />
+                    </div>
+                    <div class="form-control">
+                        <label for="age" id="label-age" >
+                            Potassium Content: 
+                        </label>
+            
+                        <input type="text" id="age" name='p7' placeholder="Enter Potassium content" />
+                    </div>
+                    <div class="form-control">
+                        <label for="age" id="label-age" >
+                            Phosphorus Content: 
+                        </label>
+            
+                        <input type="text" name='p8' id="age" placeholder="Enter Phosphorus content" />
+                    </div>
+                    <button type="submit" value="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
         {% endif %}
         {% if data %}
         <h1>{{data}}</h1>
@@ -114,6 +208,11 @@
                         <li>
                             <a href="#"><i class="fab fa-linkedin fleft padding-right"></i> </a>
                             <p><a href="https://www.linkedin.com/in/ktnvaish/">Linkedin : Ketan Vaish</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-linkedin fleft padding-right"></i> </a>
+                            <p><a href="#">Linkedin : Harshit Handa</a>
+                            </p>
                         </li>
                     </ul>
                     <!--footer_ul2_amrc ends here-->
